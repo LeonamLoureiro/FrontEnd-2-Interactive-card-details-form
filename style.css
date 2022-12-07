@@ -1,0 +1,22 @@
+.bg-desktop {
+    display: none;
+}
+
+.bg-mobile {
+    display: block;
+}
+
+@media only screen and (min-width: 769px) {
+    .bg-desktop {
+        display: block;
+    }
+
+    .bg-mobile {
+        display: none;
+    }
+}
+
+.card-form {
+    font-size: 18px;
+    color: hsl(279, 6%, 55%);
+}
