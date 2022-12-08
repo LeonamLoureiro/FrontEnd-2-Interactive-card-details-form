@@ -6,13 +6,13 @@
 }
 
 body {
-    display: flex;
-    flex-flow: column;
+    display: block;
     align-items: center;
     min-height: 100vh;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Space Grotesk';
     font-weight: 700;
     font-size: 16px;
+    letter-spacing: 2px;
     color: var(--dark-grayish-violet);
 }
 
@@ -22,16 +22,33 @@ body {
 
 .bg-mobile {
     display: block;
+    min-height: 300px;
 }
 
 .card-form {
     font-size: 18px;
     color: var(--very-dark-violet);
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 50px;
 }
 
 .card-back {
-    margin-left: 100px;
-    margin-top: 30px;
+    position: absolute;
+    top: -240px;
+    left: 40px;
+}
+
+.card-front {
+    position: absolute;
+    top: -147px;
+    left: 10px;
+    z-index: 2;
+}
+
+.card-back-image, .card-front-image {
+    box-shadow: 1px 2px 5px var(--light-grayish-violet);
+    max-width: 300px;
 }
 
 .complete-message {
@@ -48,40 +65,107 @@ body {
 
 .card-number {
     position: absolute;
-    top: 120px;
-    font-size: 24px;
-    letter-spacing: 7px;
-    margin-left: 25px;
+    top: 80px;
+    font-size: 18px;
+    letter-spacing: 5px;
+    margin-left: 20px;
     color: var(--white);
 }
 
 .card-name {
     position: absolute;
-    top: 175px;
-    font-size: 18px;
-    margin-left: 25px;
+    top: 120px;
+    font-size: 12px;
+    margin-left: 20px;
+    text-transform: uppercase;
     color: var(--white);
 }
 
 .card-expiry {
     position: absolute;
-    top: 175px;
-    font-size: 18px;
-    margin-left: 350px;
+    top: 120px;
+    font-size: 12px;
+    margin-left: 240px;
     color: var(--white);
 }
 
 .card-cvc {
     position: absolute;
-    top: 370px;
-    font-size: 18px;
-    margin-left: 350px;
+    top: 60px;
+    font-size: 14px;
+    margin-left: 240px;
     color: var(--white);
 }
 
+.card-logo {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    zoom: 80%;
+}
+
+label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+input {
+    padding: 10px;
+    border: 1px solid var(--light-grayish-violet);
+    border-radius: 5px;
+    font-size: 18px;
+    font-family: 'Space Grotesk';
+    font-weight: 500;
+    letter-spacing: 2px;
+}
+
+.name-block input, .card-block input {
+    width: 100%;
+    margin-bottom: 25px;
+    max-width: 370px;
+}
+
+.exp-cvc-block {
+    display: flex;
+    justify-content: space-between;
+}
+
+.exp-inputs {
+    display: flex;
+}
+
+.exp-inputs input {
+    max-width: 70px;
+    margin-right: 10px;
+}
+
+.cvc-block {
+    margin-left: 10px;
+}
+
+.cvc-block input {
+    max-width: 150px;
+}
+
+.confirm-btn {
+    background-color: var(--very-dark-violet);
+    color: var(--white);
+    padding: 15px 20px;
+    width: 100%;
+    border-radius: 10px;
+    margin-top: 40px;
+    cursor: pointer;
+    font-size: 18px;
+    font-family: 'Space Grotesk';
+    font-weight: 500;
+    letter-spacing: 1px;
+}
 
 @media only screen and (min-width: 769px) {
     body {
+        display: flex;
         flex-flow: row;
     }
 
@@ -95,6 +179,57 @@ body {
 
     .cards-img {
         left: 200px;
+        top: 160px;
+    }
+
+    .card-back-image, .card-front-image {
+        max-width: max-content;
+    }
+
+    .card-back {
+        left: 90px;
+        top: 300px;
+    }
+
+    .card-front {
+        top: 0px;
+        left: 0px;
+    }
+
+    .card-logo {
+        zoom: 1;
+    }
+
+    .card-number {
+        top: 120px;
+        font-size: 24px;
+        letter-spacing: 7px;
+        margin-left: 25px;
+    }
+
+    .card-name {
+        top: 175px;
+        font-size: 18px;
+        margin-left: 25px;
+        color: var(--white);
+    }
+
+    .card-expiry {
+        top: 175px;
+        font-size: 18px;
+        margin-left: 350px;
+        color: var(--white);
+    }
+
+    .card-cvc {
+        top: 90px;
+        font-size: 18px;
+        margin-left: 350px;
+    }
+
+    .card-form {
+        margin-left: 350px;
+        margin-top: 0px;
     }
 }
 

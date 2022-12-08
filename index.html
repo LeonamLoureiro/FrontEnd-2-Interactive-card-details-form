@@ -6,13 +6,11 @@
 
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.google.com/specimen/Space+Grotesk" rel="stylesheet">
   <title>Frontend Mentor | Interactive card details form</title>
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
 </head>
 <body>
     <img src="./images/bg-main-desktop.png" alt="background" class="bg-desktop">
@@ -21,6 +19,7 @@
   <div class="cards-img">
     <div class="card-front">
       <img src="./images/bg-card-front.png" alt="Card Front" class="card-front-image">
+      <img src="./images/card-logo.svg" alt="Card Logo" class="card-logo">
       <p class="card-number">0000 0000 0000 0000</p>
       <p class="card-name">Jane Appleseed</p>
       <p class="card-expiry">00/00</p>
@@ -32,25 +31,29 @@
   </div>
 
     <form class="card-form">
-      <div>
+      <div class="name-block">
         <label for="name">Cardholder Name</label>
         <input type="text" id="name" name="name" placeholder="e.g. Jane Appleseed">
       </div>
-      <div>
+      <div class="card-block">
         <label for="card-number">Card Number</label>
         <input type="text" id="card-number" name="card-number" placeholder="e.g. 1234 5678 9123 0000">
       </div>
-      <div>
-        <label for="exp-date">Exp. Date (MM/YY)</label>
-        <input type="text" id="exp-date-mm" name="exp-date-mm" placeholder="MM">
-        <input type="text" id="exp-date-yy" name="exp-date-yy" placeholder="YY">
+      <div class="exp-cvc-block">
+        <div class="exp-block">
+          <label for="exp-date">Exp. Date (MM/YY)</label>
+          <div class="exp-inputs">
+            <input type="text" id="exp-date-mm" name="exp-date-mm" placeholder="MM">
+            <input type="text" id="exp-date-yy" name="exp-date-yy" placeholder="YY">
+          </div>
+        </div>
+        <div class="cvc-block">
+          <label for="cvc">CVC</label>
+          <input type="text" id="cvc" name="cvc" placeholder="e.g. 123">
+        </div>
       </div>
       <div>
-        <label for="cvc">CVC</label>
-        <input type="text" id="cvc" name="cvc" placeholder="e.g. 123">
-      </div>
-      <div>
-        <button type="submit">Confirm</button>
+        <button class="confirm-btn" type="submit">Confirm</button>
       </div>
     </form>
 
