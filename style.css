@@ -1,3 +1,21 @@
+:root {
+    --light-grayish-violet: hsl(270, 3%, 87%);
+    --dark-grayish-violet: hsl(279, 6%, 55%);
+    --very-dark-violet: hsl(278, 68%, 11%);
+    --white: hsl(0, 0%, 100%);
+}
+
+body {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--dark-grayish-violet);
+}
+
 .bg-desktop {
     display: none;
 }
@@ -6,7 +24,67 @@
     display: block;
 }
 
+.card-form {
+    font-size: 18px;
+    color: var(--very-dark-violet);
+}
+
+.card-back {
+    margin-left: 100px;
+    margin-top: 30px;
+}
+
+.complete-message {
+    display: none;
+}
+
+.attribution {
+    display: none;
+}
+
+.cards-img {
+    position: absolute;
+}
+
+.card-number {
+    position: absolute;
+    top: 120px;
+    font-size: 24px;
+    letter-spacing: 7px;
+    margin-left: 25px;
+    color: var(--white);
+}
+
+.card-name {
+    position: absolute;
+    top: 175px;
+    font-size: 18px;
+    margin-left: 25px;
+    color: var(--white);
+}
+
+.card-expiry {
+    position: absolute;
+    top: 175px;
+    font-size: 18px;
+    margin-left: 350px;
+    color: var(--white);
+}
+
+.card-cvc {
+    position: absolute;
+    top: 370px;
+    font-size: 18px;
+    margin-left: 350px;
+    color: var(--white);
+}
+
+
 @media only screen and (min-width: 769px) {
+    body {
+        flex-flow: row;
+    }
+
     .bg-desktop {
         display: block;
     }
@@ -14,9 +92,9 @@
     .bg-mobile {
         display: none;
     }
+
+    .cards-img {
+        left: 200px;
+    }
 }
 
-.card-form {
-    font-size: 18px;
-    color: hsl(279, 6%, 55%);
-}
