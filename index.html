@@ -6,7 +6,6 @@
 
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   <link rel="stylesheet" href="style.css">
-  <script type="text/javascript" src="script.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.google.com/specimen/Space+Grotesk" rel="stylesheet">
@@ -34,11 +33,11 @@
     <form class="card-form">
       <div class="name-block">
         <label for="name">Cardholder Name</label>
-        <input type="text" id="name" name="name" placeholder="e.g. Jane Appleseed">
+        <input type="text" id="name" name="name" placeholder="e.g. Jane Appleseed" oninput="inputName()">
       </div>
       <div class="card-block">
         <label for="card-number">Card Number</label>
-        <input type="text" id="card-number" name="card-number" placeholder="e.g. 1234 5678 9123 0000">
+        <input type="text" id="card-number" name="card-number" placeholder="e.g. 1234 5678 9123 0000" oninput="inputCardNum()">
       </div>
       <div class="exp-cvc-block">
         <div class="exp-block">
@@ -50,22 +49,23 @@
         </div>
         <div class="cvc-block">
           <label for="cvc">CVC</label>
-          <input type="text" id="cvc" name="cvc" placeholder="e.g. 123">
+          <input type="text" id="cvc" name="cvc" placeholder="e.g. 123" oninput="inputCvc()">
         </div>
       </div>
       <div>
-        <button class="confirm-btn" type="submit">Confirm</button>
+        <button id="submit" class="confirm-btn" type="submit">Confirm</button>
       </div>
     </form>
-
+    <script src="script.js"></script>
 
   <!-- Completed state start -->
     <div class="complete-message">
       <img src="./images/icon-complete.svg" alt="Complete" class="completed-form">
-      <h1>Thank you!</h1>
+      <h1 id="thank-you-h1">Thank you!</h1>
       <p>We've added your card details</p>
-      <button type="submit">Continue</button>
+      <button id="continue" type="submit">Continue</button>
     </div>
+    
 </body>
 
 

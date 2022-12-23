@@ -129,7 +129,6 @@ input {
 
 .exp-cvc-block {
     display: flex;
-    justify-content: space-between;
 }
 
 .exp-inputs {
