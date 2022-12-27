@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "type": "msedge",
+            "name": "file:///C:/Users/Leonam%20Loureiro/Documents/GitHub/FrontEnd-2-Interactive-card-details-form/index.html",
+            "request": "launch",
+            "url": "file:///C:/Users/Leonam%20Loureiro/Documents/GitHub/FrontEnd-2-Interactive-card-details-form/index.html"
+        }
+    ]
+}

@@ -22,7 +22,7 @@
       <img src="./images/card-logo.svg" alt="Card Logo" class="card-logo">
       <p class="card-number">0000 0000 0000 0000</p>
       <p class="card-name">Jane Appleseed</p>
-      <p class="card-expiry">00/00</p>
+      <p class="card-expiry"><span class="card-month">00</span>/<span class="card-year">00</span></p>
     </div>
     <div class="card-back">
       <img src="./images/bg-card-back.png" alt="Card Back" class="card-back-image">
@@ -43,8 +43,8 @@
         <div class="exp-block">
           <label for="exp-date">Exp. Date (MM/YY)</label>
           <div class="exp-inputs">
-            <input type="text" id="exp-date-mm" name="exp-date-mm" placeholder="MM">
-            <input type="text" id="exp-date-yy" name="exp-date-yy" placeholder="YY">
+            <input type="text" id="exp-date-mm" name="exp-date-mm" placeholder="MM" oninput="inputMM()">
+            <input type="text" id="exp-date-yy" name="exp-date-yy" placeholder="YY" oninput="inputYY()">
           </div>
         </div>
         <div class="cvc-block">

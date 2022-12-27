@@ -1,13 +1,13 @@
 
 const cardholder = document.getElementById("name");
 const cardNumber = document.getElementById("card-number");
-const expiry = Array.from(document.querySelectorAll(".exp-inputs"));
+const expiry = Array.from(document.querySelectorAll(".card-expiry"));
 const cvc = document.getElementById("cvc");
 const submit = document.getElementById("submit");
 const nameOnCard = document.querySelector(".card-name");
 const numOnCard = document.querySelector(".card-number");
-const expMM = document.querySelector(".card-expire");
-const expYY = document.querySelector(".expiry-year-display");
+const expMM = document.querySelector(".card-month");
+const expYY = document.querySelector(".card-year");
 const cvcDisplay = document.querySelector(".card-cvc");
 const thankYou = document.getElementById("thank-you-h1");
 const thankYouSection = document.querySelector(".complete-message");
@@ -15,7 +15,7 @@ const continueBtn = document.getElementById("continue");
 const form = document.querySelector(".card-form");
 const expiryErrorMsg = document.getElementById("expiry-error");
 
-// console.log(expMM);
+console.log(expMM.textContent);
 
 function inputName() {
   nameOnCard.innerHTML = cardholder.value;
@@ -44,18 +44,19 @@ function inputCardNum() {
   }
 }
 function inputMM() {
-  let formattedMM = expiry[0].value;
+  let formattedMM = expMM.textContent;
   formattedMM = formattedMM.substring(0, 2);
-  expiry[0].value = formattedMM;
-  if (expiry[0].value === "") {
+  expMM.textContent = formattedMM;
+  console.log(formattedMM);
+  if (expMM.textContent === "") {
     expMM.innerHTML = "00";
   } else {
-    expMM.innerHTML = expiry[0].value;
+    expMM.innerHTML = expMM.textContent;
   }
 }
 function inputYY() {
   let formattedYY = expiry[1].value;
-  formattedYY = formattedYY.substring(0, 4);
+  formattedYY = formattedYY.substring(0, 2);
   expiry[1].value = formattedYY;
   if (expiry[1].value === "") {
     expYY.innerHTML = "0000";
