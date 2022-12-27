@@ -16,8 +16,13 @@ const thankYouSection = document.querySelector(".complete-message");
 const continueBtn = document.getElementById("continue");
 const form = document.querySelector(".card-form");
 const expiryErrorMsg = document.getElementById("expiry-error");
+const errorMessage = document.querySelector(".error-message");
+const errorName = document.querySelector(".error-name");
+const errorNumber = document.querySelector(".error-number");
+const errorDate = document.querySelector(".error-date");
+const errorCVC = document.querySelector(".error-cvc");
 
-console.log(expMM.textContent);
+
 
 function inputName() {
   nameOnCard.innerHTML = cardholder.value;
@@ -78,6 +83,159 @@ function inputCvc() {
     cvcDisplay.innerHTML = cvc.value;
   }
 }
+
+//Validation of data card
+$(document).ready(function() {
+  $('.card-form').submit(function(event) {
+    // Prevent form submission
+    event.preventDefault();
+
+    // Stores input field values in variables
+    var name = $('#name').val();
+    var cardNumber = $('#card-number').val();
+    var expDateMM = $('#exp-date-mm').val();
+    var expDateYY = $('#exp-date-yy').val();
+    var cvc = $('#cvc').val();
+
+    // Check if fields are filled
+    if (name == '') {
+      errorName.innerHTML = "Please enter cardholder name!";
+      $(".error-message").css('display', 'block');      
+    }
+
+    if (cardNumber == '') {
+      errorNumber.innerHTML = "Can't be blank";
+      $(".error-message").css('display', 'block');      
+    }
+
+    if (expDateMM == '') {
+      errorDate.innerHTML = "Can't be blank";
+      $(".error-message").css('display', 'block');      
+    }
+
+    if (expDateYY == '') {
+      errorDate.innerHTML = "Can't be blank";
+      $(".error-message").css('display', 'block');      
+    }
+
+    if (cvc == '') {
+      errorCVC.innerHTML = "Can't be blank";
+      $(".error-message").css('display', 'block');      
+    }
+
+    if (name == '' || cardNumber == '' || expDateMM == '' || expDateYY == '' || cvc == '') {
+      alert('Por favor, preencha todos os campos');
+      return;
+    }
+
+    // Checks if the credit card number is valid
+    if (!validateCardNumber(cardNumber)) {
+      alert('O número do cartão de crédito é inválido');
+      return;
+    }
+
+    // Checks if the card expiration date is valid
+    if (!validateExpDate(expDateMM, expDateYY)) {
+      alert('A data de validade do cartão é inválida');
+      return;
+    }
+
+    // Checks if the CVC is valid
+    if (!validateCVC(cvc)) {
+      alert('O CVC é inválido');
+      return;
+    }
+
+    // If all checks pass, the form can be submitted
+    alert('Formulário válido! Enviando...');
+  });
+});
+
+    // Function to validate the credit card number
+    function validateCardNumber(cardNumber) {
+        // Remove all whitespace from credit card number
+        cardNumber = cardNumber.replace(/\s/g, '');
+
+        // Checks that the credit card number is between 12 and 19 digits long
+        if (cardNumber.length < 12 || cardNumber.length > 19) {
+          return false;
+        }
+
+        // Checks if the credit card number only contains digits
+        if (/[^\d]/.test(cardNumber)) {
+          return false;
+        }
+
+        // Calculates the check digit of the credit card number
+        var checksum = 0;
+        for (var i = cardNumber.length - 1; i >= 0; i--) {
+          var digit = parseInt(cardNumber.charAt(i), 10);
+          if (i % 2 == cardNumber.length % 2) {
+            digit *= 2;
+            if (digit > 9) {
+              digit -= 9;
+            }
+          }
+          checksum += digit;
+        }
+
+        // Checks if the check digit is valid
+        if (checksum % 10 != 0) {
+          return false;
+        }
+
+  
+      return true;
+    }
+
+    // Function to validate the card expiration date
+    function validateExpDate(expDateMM, expDateYY) {
+      // Checks if expiration date fields are filled
+      if (expDateMM.length == 0 || expDateYY.length == 0) {
+        return false;
+      }
+
+      // Checks if the month is a number between 1 and 12
+      if (!/^\d+$/.test(expDateMM) || parseInt(expDateMM, 10) < 1 || parseInt(expDateMM, 10) > 12) {
+        return false;
+      }
+
+      // Checks if the year is a 2-digit number
+      if (!/^\d{2}$/.test(expDateYY)) {
+        return false;
+      }
+
+      // Calculates full year based on 2-digit year
+      var currentYear = new Date().getFullYear().toString().substr(2);
+      var expYear = parseInt(expDateYY, 10);
+      expYear += 2000;
+      
+      // Checks that the expiration date is not earlier than the current date
+      var currentDate = new Date();
+      var expDate = new Date(expYear, expDateMM - 1);
+      if (expDate < currentDate) {
+        return false;
+      }
+
+      return true;
+    }
+
+    // Function to validate the CVC
+    function validateCVC(cvc) {
+      // The CVC must have 3 digits
+      if (cvc.length != 3) {
+        return false;
+      }
+
+      // CVC can only contain digits
+      if (/[^\d]/.test(cvc)) {
+        return false;
+      }
+
+      return true;
+    }
+
+
 
 function massValidate() {
   function validateName() {
