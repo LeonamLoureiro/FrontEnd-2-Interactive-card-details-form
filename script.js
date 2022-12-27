@@ -1,7 +1,6 @@
 
 const cardholder = document.getElementById("name");
 const cardNumber = document.getElementById("card-number");
-const expiry = Array.from(document.querySelectorAll(".card-expiry"));
 const dateMM = document.getElementById("exp-date-mm");
 const dateYY = document.getElementById("exp-date-yy");
 const cvc = document.getElementById("cvc");
@@ -11,9 +10,8 @@ const numOnCard = document.querySelector(".card-number");
 const expMM = document.querySelector(".card-month");
 const expYY = document.querySelector(".card-year");
 const cvcDisplay = document.querySelector(".card-cvc");
-const thankYou = document.getElementById("thank-you-h1");
+const thankYou = document.querySelector(".thank-you-h1");
 const thankYouSection = document.querySelector(".complete-message");
-const continueBtn = document.getElementById("continue");
 const form = document.querySelector(".card-form");
 const expiryErrorMsg = document.getElementById("expiry-error");
 const errorMessage = document.querySelector(".error-message");
@@ -26,7 +24,6 @@ const errorCVC = document.querySelector(".error-cvc");
 
 function inputName() {
   nameOnCard.innerHTML = cardholder.value;
-  thankYou.innerHTML = `Thank You ${cardholder.value}`;
   if (nameOnCard.innerHTML == "") {
     nameOnCard.innerHTML = cardholder.placeholder;
   }
@@ -89,7 +86,7 @@ $(document).ready(function() {
   $('.card-form').submit(function(event) {
     // Prevent form submission
     event.preventDefault();
-
+    
     // Stores input field values in variables
     var name = $('#name').val();
     var cardNumber = $('#card-number').val();
@@ -100,54 +97,73 @@ $(document).ready(function() {
     // Check if fields are filled
     if (name == '') {
       errorName.innerHTML = "Please enter cardholder name!";
-      $(".error-message").css('display', 'block');      
+      $(".error-message").css('display', 'block');
+      $("#name").css('border', '1px solid red');       
     }
 
     if (cardNumber == '') {
       errorNumber.innerHTML = "Can't be blank";
-      $(".error-message").css('display', 'block');      
+      $(".error-message").css('display', 'block');
+      $("#card-number").css('border', '1px solid red');      
     }
 
     if (expDateMM == '') {
       errorDate.innerHTML = "Can't be blank";
-      $(".error-message").css('display', 'block');      
+      $(".error-message").css('display', 'block');
+      $(".exp-inputs").css('display', 'block'); 
+      $("#exp-date-mm").css('border', '1px solid red');           
     }
 
     if (expDateYY == '') {
       errorDate.innerHTML = "Can't be blank";
-      $(".error-message").css('display', 'block');      
+      $(".error-message").css('display', 'block');
+      $(".exp-inputs").css('display', 'block'); 
+      $("#exp-date-yy").css('border', '1px solid red');     
     }
 
     if (cvc == '') {
       errorCVC.innerHTML = "Can't be blank";
-      $(".error-message").css('display', 'block');      
+      $(".error-message").css('display', 'block');
+      $("#cvc").css('border', '1px solid red');      
     }
 
     if (name == '' || cardNumber == '' || expDateMM == '' || expDateYY == '' || cvc == '') {
-      alert('Por favor, preencha todos os campos');
+      alert('Please fill in all fields');
       return;
     }
 
     // Checks if the credit card number is valid
     if (!validateCardNumber(cardNumber)) {
-      alert('O número do cartão de crédito é inválido');
+      errorNumber.innerHTML = "Please fill in a valid card number";
+      $(".error-message").css('display', 'block');
+      $("#card-number").css('border', '1px solid red');
+      alert('Credit card number is invalid');
       return;
     }
 
     // Checks if the card expiration date is valid
     if (!validateExpDate(expDateMM, expDateYY)) {
-      alert('A data de validade do cartão é inválida');
+      errorDate.innerHTML = "Please fill in a valid expire date";
+      $(".error-message").css('display', 'block');
+      $(".exp-inputs").css('display', 'block');
+      alert('Card expiration date is invalid');
       return;
     }
 
     // Checks if the CVC is valid
     if (!validateCVC(cvc)) {
-      alert('O CVC é inválido');
+      errorCVC.innerHTML = "Please fill in a valid CVC";
+      $(".error-message").css('display', 'block');
+      $("#cvc").css('border', '1px solid red');
+      alert('The CVC is invalid');
       return;
     }
 
     // If all checks pass, the form can be submitted
-    alert('Formulário válido! Enviando...');
+    $(".card-form").css('display', 'none');
+    $(".complete-message").css('display', 'block');
+
+    
   });
 });
 
@@ -197,11 +213,13 @@ $(document).ready(function() {
 
       // Checks if the month is a number between 1 and 12
       if (!/^\d+$/.test(expDateMM) || parseInt(expDateMM, 10) < 1 || parseInt(expDateMM, 10) > 12) {
+        $("#exp-date-mm").css('border', '1px solid red')
         return false;
       }
 
       // Checks if the year is a 2-digit number
       if (!/^\d{2}$/.test(expDateYY)) {
+        $("#exp-date-yy").css('border', '1px solid red')
         return false;
       }
 
@@ -214,6 +232,7 @@ $(document).ready(function() {
       var currentDate = new Date();
       var expDate = new Date(expYear, expDateMM - 1);
       if (expDate < currentDate) {
+        $("#exp-date-yy").css('border', '1px solid red')
         return false;
       }
 
@@ -235,103 +254,15 @@ $(document).ready(function() {
       return true;
     }
 
-
-
-function massValidate() {
-  function validateName() {
-    let cardholderExp = /^[A-Z a-z]+$/;
-    let errorMsg = document.getElementById("errorMsg");
-    if (cardholder.value.match(cardholderExp)) {
-      errorMsg.textContent = "";
-    } else {
-      errorMsg.innerHTML = "Please enter cardholder name!";
-    }
-  }
-  function validateCard() {
-    let cardNumError = document.getElementById("card-num-error");
-    if (cardNumber.value.length > 0 && cardNumber.value.length < 16) {
-      cardNumError.innerHTML = "Wrong format!";
-    } else if (cardNumber.value == "") {
-      cardNumError.innerHTML = "Can't be blank!";
-    } else {
-      cardNumError.innerHTML = "";
-    }
-  }
-  function validateExpiry() {
-    let expMonth = /^(0[0-9]|1[1-2]){2}$/;
-    let expYear = /^[0-9][0-2]{4}$/;
-
-    if (expiry[0].value.match(expMonth)) {
-      expiryErrorMsg.innerHTML = "";
-    } else if (
-      expiry[0].value.match(expMonth) &&
-      expiry[1].value.match(expYear)
-    ) {
-      expiryErrorMsg.innerHTML = "";
-    } else if (expiry[0] == "") {
-      expiryErrorMsg.innerHTML = "Can't be blank!";
-    } else {
-      expiryErrorMsg.innerHTML = "Wrong format!";
-    }
-  }
-  function validateCvc() {
-    let cvcErrorMsg = document.getElementById("error-cvc");
-    let cvcExp = /^[0-9]{3}$/;
-    if (cvc.value === "") {
-      cvcErrorMsg.innerHTML = "Can't be blank";
-    } else if (cvc.value.match(cvcExp)) {
-      cvcErrorMsg.innerHTML = "";
-    } else {
-      cvcErrorMsg.innerHTML = "Wrong format!";
-    }
-  }
-  validateCard();
-  validateName();
-  validateExpiry();
-  validateCvc();
-  if (
-    nameOnCard.innerHTML == cardholder.placeholder ||
-    numOnCard.innerHTML == cardNumber.placeholder ||
-    expMM.innerHTML == "00" ||
-    expYY.innerHTML == "0000" ||
-    cvcDisplay.innerHTML == "000" ||
-    (cardNumber.value.length > 0 && cardNumber.value.length < 16)
-  ) {
-    return false;
-  } else {
-    return true;
-  }
-}
-// Submit Button
-
-submit.addEventListener("click", function () {
-  massValidate();
-  if (massValidate() == false) {
-    event.preventDefault();
-  } else {
-    event.preventDefault();
-
-    form.classList.add("hidden");
-    thankYouSection.classList.remove("hidden");
-  }
-  //   console.log(cardNumber.value.length > 0 && cardNumber.value.length < 16);
-});
-
 // Continue Button
 
-continueBtn.addEventListener("click", function () {
-  event.preventDefault();
-  thankYouSection.classList.add("hidden");
-  form.classList.remove("hidden");
-  nameOnCard.innerHTML = cardholder.placeholder;
-  numOnCard.innerHTML = cardNumber.placeholder;
-  expMM.innerHTML = "00";
-  expYY.innerHTML = "0000";
-  cvcDisplay.innerHTML = "000";
-  cardholder.value = "";
-  cardNumber.value = "";
-  expiry[0].value = "";
-  expiry[1].value = "";
-  cvc.value = "";
-  expiryErrorMsg.innerHTML = "";
+document.addEventListener('DOMContentLoaded', function () {
+  var myButton = document.getElementById('continue-btn');
+  myButton.addEventListener('click', function () {
+    $(".card-form").css('display', 'block');
+    $(".complete-message").css('display', 'none');
+    location.reload();
+  });
 });
+
+

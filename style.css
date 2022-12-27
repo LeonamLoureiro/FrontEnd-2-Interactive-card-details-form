@@ -53,6 +53,8 @@ body {
 
 .complete-message {
     display: none;
+    margin: 15vw 10vh;
+    text-align: center;
 }
 
 .attribution {
@@ -129,6 +131,7 @@ input {
 
 .exp-cvc-block {
     display: flex;
+    margin-bottom: 40px;
 }
 
 .exp-inputs {
@@ -153,8 +156,7 @@ input {
     color: var(--white);
     padding: 15px 20px;
     width: 100%;
-    border-radius: 10px;
-    margin-top: 40px;
+    border-radius: 10px;    
     cursor: pointer;
     font-size: 18px;
     font-family: 'Space Grotesk';
@@ -165,6 +167,18 @@ input {
 .error-message {
     color: red;
     display: none;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.error-name, .error-number {
+    margin-top: -15px;
+}
+
+.thank-you-h1 {
+    text-transform: uppercase;
+    color: var(--very-dark-violet);
+    letter-spacing: 3px;    
 }
 
 @media only screen and (min-width: 769px) {
@@ -234,6 +248,10 @@ input {
     .card-form {
         margin-left: 350px;
         margin-top: 0px;
+    }
+
+    .complete-message {
+        margin-left: 350px;        
     }
 }
 
