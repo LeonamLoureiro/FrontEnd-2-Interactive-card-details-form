@@ -2,6 +2,8 @@
 const cardholder = document.getElementById("name");
 const cardNumber = document.getElementById("card-number");
 const expiry = Array.from(document.querySelectorAll(".card-expiry"));
+const dateMM = document.getElementById("exp-date-mm");
+const dateYY = document.getElementById("exp-date-yy");
 const cvc = document.getElementById("cvc");
 const submit = document.getElementById("submit");
 const nameOnCard = document.querySelector(".card-name");
@@ -44,24 +46,25 @@ function inputCardNum() {
   }
 }
 function inputMM() {
-  let formattedMM = expMM.textContent;
+  let formattedMM = dateMM.value;
+
   formattedMM = formattedMM.substring(0, 2);
-  expMM.textContent = formattedMM;
-  console.log(formattedMM);
-  if (expMM.textContent === "") {
-    expMM.innerHTML = "00";
+  dateMM.value = formattedMM;
+  if (dateMM.value === "") {
+    expMM.innerHTML = "000";
   } else {
-    expMM.innerHTML = expMM.textContent;
+    expMM.innerHTML = dateMM.value;
   }
 }
 function inputYY() {
-  let formattedYY = expiry[1].value;
+  let formattedYY = dateYY.value;
+
   formattedYY = formattedYY.substring(0, 2);
-  expiry[1].value = formattedYY;
-  if (expiry[1].value === "") {
-    expYY.innerHTML = "0000";
+  dateYY.value = formattedYY;
+  if (dateMM.value === "") {
+    expYY.innerHTML = "000";
   } else {
-    expYY.innerHTML = expiry[1].value;
+    expYY.innerHTML = dateYY.value;
   }
 }
 function inputCvc() {
