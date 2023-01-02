@@ -149,6 +149,7 @@ input {
 
 .cvc-block input {
     max-width: 150px;
+    width: 100%;
 }
 
 .confirm-btn {
@@ -252,6 +253,6 @@ input {
 
     .complete-message {
         margin-left: 350px;        
-    }
+    }      
 }
 
